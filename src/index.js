@@ -5,7 +5,8 @@ import '../static/css/style';
 
 
 var App = ( _ => {
-	var initState = localStorage.state ? JSON.parse(localStorage.state) : {};
+	localStorage.ReduxState = localStorage.ReduxState || JSON.stringify({});
+	var initState = JSON.parse(localStorage.ReduxState);
 	var store = createStore(todoApp, initState);
 	var unsubscribe = store.subscribe(render);
 
@@ -33,6 +34,9 @@ var App = ( _ => {
 		// update count 
 		$('#statusWrap').find('.doneNum').text(doneNum);
 		$('#statusWrap').find('.yetNum').text(yetNum);
+
+		// store state to localstorage
+		localStorage.ReduxState = JSON.stringify(state);
 	}
 
 	return {

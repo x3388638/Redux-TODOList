@@ -36,7 +36,7 @@ var TaskInput = (_ => {
 					id: Date.now(), 
 					text
 				}
-			})
+			});
 		}
 	}
 
