@@ -1,0 +1,25 @@
+#statusWrap {
+	margin-top: 50px;
+}
+#listWrap {
+	margin-top: 20px;
+}
+#listWrap .task .taskStatus {
+	border: 1px solid #CCC;
+	padding: 5px 6px;
+	border-radius: 25px;
+	color: green;
+	margin-right: 10px;
+	cursor: pointer;
+}
+#listWrap .task .btn-delTask {
+	color: #FF6F6F;
+	cursor: pointer;
+	display: none;
+}
+#listWrap .task .btn-delTask:hover {
+	color: #FF0000;
+}
+#listWrap .task:hover .btn-delTask {
+	display: initial;
+}
