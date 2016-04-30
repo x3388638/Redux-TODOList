@@ -16,6 +16,15 @@ var TaskInput = (_ => {
 		$inputWrap
 			.off('click.addTask')
 			.on('click.addTask', '#btn-addTask', _handleAddTask)
+		$inputWrap
+			.off('keypress.addTask')
+			.on('keypress.addTask', '#addTaskInput', _handleKeypress);
+	}
+
+	function _handleKeypress(e) {
+		if(e.which == 13) {
+			_handleAddTask();
+		}
 	}
 
 	function _handleAddTask() {
