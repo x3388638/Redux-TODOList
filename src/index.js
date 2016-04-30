@@ -1,6 +1,7 @@
 import { createStore } from 'redux';
 import todoApp from './js/reducer';
-import TaskInput from './js/TaskInput'
+import TaskInput from './js/TaskInput';
+import TodoList from './js/TodoList';
 import '../static/css/style';
 
 
@@ -48,3 +49,4 @@ var App = ( _ => {
 
 App.render();
 TaskInput.init(App.store);
+TodoList.init(App.store);
