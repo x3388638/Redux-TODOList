@@ -19,6 +19,17 @@ function tasks(state = [], action) {
 					});
 				}
 			});
+		case 'DELETE_TASK': 
+			var index = 0;
+			state.forEach((val, i) => {
+				if(val.id == action.data.id) {
+					index = i;
+				}
+			});
+			return [
+				...state.slice(0, index), 
+				...state.slice(index +1, state.length)
+			];
 		default: 
 			return state;
 	}
