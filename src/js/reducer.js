@@ -18,6 +18,7 @@ function tasks(state = [], action) {
 						isDone: action.data.isDone
 					});
 				}
+				return val;
 			});
 		case 'DELETE_TASK': 
 			var index = 0;

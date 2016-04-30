@@ -37,6 +37,7 @@ var TaskInput = (_ => {
 					text
 				}
 			});
+			$inputWrap.find('#addTaskInput').val('');
 		}
 	}
 
