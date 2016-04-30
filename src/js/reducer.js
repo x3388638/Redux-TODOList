@@ -1,4 +1,4 @@
-import Redux from 'redux';
+import { combineReducers } from 'redux';
 
 function tasks(state = [], action) {
 	switch (action.type) {
@@ -7,7 +7,8 @@ function tasks(state = [], action) {
 				...state, 
 				{
 					id: action.data.id, 
-					text: action.data.text
+					text: action.data.text, 
+					isDone: false
 				}
 			];
 		case 'UPDATE_TASK':
@@ -23,6 +24,8 @@ function tasks(state = [], action) {
 	}
 }
 
-export default const todo = Redux.combineReducers({
+const todo = combineReducers({
 	tasks
 });
+
+export default todo;

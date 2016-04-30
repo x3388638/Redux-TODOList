@@ -12,6 +12,9 @@
 	margin-right: 10px;
 	cursor: pointer;
 }
+#listWrap .task .taskStatus.yet .glyphicon {
+	display: none;
+}
 #listWrap .task .btn-delTask {
 	color: #FF6F6F;
 	cursor: pointer;
