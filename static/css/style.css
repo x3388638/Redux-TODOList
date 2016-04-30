@@ -6,11 +6,16 @@
 }
 #listWrap .task .taskStatus {
 	border: 1px solid #CCC;
-	padding: 5px 6px;
 	border-radius: 25px;
 	color: green;
 	margin-right: 10px;
 	cursor: pointer;
+	width: 28.02px;
+	height: 28px;
+	display: inline-block;
+	text-align: center;
+	line-height: 28px;
+	vertical-align: middle;
 }
 #listWrap .task .taskStatus.yet .glyphicon {
 	display: none;
