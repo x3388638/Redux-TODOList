@@ -1,5 +1,6 @@
 import { createStore } from 'redux';
 import todoApp from './js/reducer';
+import TaskInput from './js/TaskInput'
 import '../static/css/style';
 
 
@@ -23,7 +24,7 @@ var App = ( _ => {
 			$('#listWrap ul').append(
 				`<li data-taskID=${val.id} class="list-group-item task">
 					<span class="taskStatus ${!val.isDone ? 'yet' : ''}"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></span>
-					${val.text}
+					${$('<textarea>').html(val.text).text()}
 					<span class="glyphicon glyphicon-remove btn-delTask pull-right" aria-hidden="true"></span>
 				</li>`
 			);
@@ -42,3 +43,4 @@ var App = ( _ => {
 })();
 
 App.render();
+TaskInput.init(App.store);
