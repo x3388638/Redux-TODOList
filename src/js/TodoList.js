@@ -48,7 +48,7 @@ var TodoList = (_ => {
 
 	function _handleUpdateTaskContent() {
 		var id = $(this).parent('.task').attr('data-taskid');
-		var text = $(this).text();
+		var text = $(this).text() || undefined;
 		_store.dispatch({
 			type: 'UPDATE_TASK', 
 			data: {
