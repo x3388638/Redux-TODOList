@@ -11,7 +11,10 @@ var TodoList = (_ => {
 			.on('click.delTask', '.btn-delTask', _handleDelTask);
 		$listWrap
 			.off('click.updateTask')
-			.on('click.updateTask', '.taskStatus', _handleUpdateTask);
+			.on('click.updateTask', '.taskStatus', _handleUpdateTaskStatus);
+		$listWrap
+			.off('blur.updateTask')
+			.on('blur.updateTask', '.taskContent', _handleUpdateTaskContent);
 	}
 
 	function init(store) {
@@ -30,7 +33,8 @@ var TodoList = (_ => {
 		});
 	}
 
-	function _handleUpdateTask() {
+
+	function _handleUpdateTaskStatus() {
 		var isDone = $(this).hasClass('yet');
 		var id = $(this).parent('.task').attr('data-taskid');
 		_store.dispatch({
@@ -40,6 +44,18 @@ var TodoList = (_ => {
 				isDone
 			}
 		})
+	}
+
+	function _handleUpdateTaskContent() {
+		var id = $(this).parent('.task').attr('data-taskid');
+		var text = $(this).text();
+		_store.dispatch({
+			type: 'UPDATE_TASK', 
+			data: {
+				id, 
+				text
+			}
+		});
 	}
 
 	return {

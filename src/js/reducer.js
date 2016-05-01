@@ -24,7 +24,7 @@ function tasks(state = [], action) {
 			return state.map((val, i) => {
 				if(val.id == action.data.id) {
 					return Object.assign({}, val, {
-						isDone: action.data.isDone, 
+						isDone: typeof action.data.isDone == 'boolean' ? action.data.isDone : val.isDone, 
 						text: action.data.text || val.text
 					});
 				}

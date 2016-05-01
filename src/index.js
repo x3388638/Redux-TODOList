@@ -39,7 +39,7 @@ var App = ( _ => {
 					`<li data-taskID=${val.id} class="list-group-item task">
 						<span class="taskStatus ${!val.isDone ? 'yet' : ''}"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></span>
 						<span class="glyphicon glyphicon-remove btn-delTask pull-right" aria-hidden="true"></span>
-						<span class="taskContent" contenteditable >${$('<textarea>').html(val.text).text()}</span>
+						<span class="taskContent" contenteditable >${$('<textarea>').text(val.text).html()}</span>
 					</li>`
 				);
 			}

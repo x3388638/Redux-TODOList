@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "62443aa9da355a1d5859"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "3823bf9c6207bc86bd03"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -629,7 +629,7 @@
 					yetNum++;
 				}
 				if (state.visibility == 'All' || state.visibility == 'Done' && val.isDone || state.visibility == 'Yet' && !val.isDone) {
-					$('#listWrap ul').append('<li data-taskID=' + val.id + ' class="list-group-item task">\n\t\t\t\t\t\t<span class="taskStatus ' + (!val.isDone ? 'yet' : '') + '"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></span>\n\t\t\t\t\t\t<span class="glyphicon glyphicon-remove btn-delTask pull-right" aria-hidden="true"></span>\n\t\t\t\t\t\t<span class="taskContent" contenteditable >' + $('<textarea>').html(val.text).text() + '</span>\n\t\t\t\t\t</li>');
+					$('#listWrap ul').append('<li data-taskID=' + val.id + ' class="list-group-item task">\n\t\t\t\t\t\t<span class="taskStatus ' + (!val.isDone ? 'yet' : '') + '"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></span>\n\t\t\t\t\t\t<span class="glyphicon glyphicon-remove btn-delTask pull-right" aria-hidden="true"></span>\n\t\t\t\t\t\t<span class="taskContent" contenteditable >' + $('<textarea>').text(val.text).html() + '</span>\n\t\t\t\t\t</li>');
 				}
 			});
 	
@@ -1631,7 +1631,8 @@
 				return state.map(function (val, i) {
 					if (val.id == action.data.id) {
 						return Object.assign({}, val, {
-							isDone: action.data.isDone
+							isDone: typeof action.data.isDone == 'boolean' ? action.data.isDone : val.isDone,
+							text: action.data.text || val.text
 						});
 					}
 					return val;
@@ -1729,7 +1730,8 @@
 	
 		function _bindEvent() {
 			$listWrap.off('click.delTask').on('click.delTask', '.btn-delTask', _handleDelTask);
-			$listWrap.off('click.updateTask').on('click.updateTask', '.taskStatus', _handleUpdateTask);
+			$listWrap.off('click.updateTask').on('click.updateTask', '.taskStatus', _handleUpdateTaskStatus);
+			$listWrap.off('blur.updateTask').on('blur.updateTask', '.taskContent', _handleUpdateTaskContent);
 		}
 	
 		function init(store) {
@@ -1748,7 +1750,7 @@
 			});
 		}
 	
-		function _handleUpdateTask() {
+		function _handleUpdateTaskStatus() {
 			var isDone = $(this).hasClass('yet');
 			var id = $(this).parent('.task').attr('data-taskid');
 			_store.dispatch({
@@ -1756,6 +1758,18 @@
 				data: {
 					id: id,
 					isDone: isDone
+				}
+			});
+		}
+	
+		function _handleUpdateTaskContent() {
+			var id = $(this).parent('.task').attr('data-taskid');
+			var text = $(this).text();
+			_store.dispatch({
+				type: 'UPDATE_TASK',
+				data: {
+					id: id,
+					text: text
 				}
 			});
 		}
